@@ -1,79 +1,43 @@
 <header id="mynavbar" class="topnav">
-    <nav id="reload">
-        <div class="active">
-            <a href="/"><img src="<%=assetPath('images/logo_icon.png')%>" alt="logo">
-                <div>
-                    <p id="website-name">SocioKnct</p>
-                </div>
-            </a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
         </div>
-
-        <ul>
-            <% if(locals.user){ %>
-                <li><input type="hidden" id="currentuser" value="<%=locals.user.username%>"></li>
-                <li class="search-li"><input type="text" id="search-name" class="search" name="filtername"
-                        placeholder="Enter Name"></li>
-
-                <li class="friend-dropdown-li">
-                    <div class="dropdown">
-                        <button class="dropbtn" onclick="openDropdown()"><span>Friend Request</span><i
-                                class="fa fa-user-plus"></i></button>
-                        <div id="myDropdown" class="dropdown-content" style=" height: 350px; overflow-y: scroll;">
-                            <%if(user.request && user.request.length!=0) {%>
-                                <% for(i of newfriend){%>
-                                    <div>
-
-                                        <div>
-                                            <h4>
-                                                <%=i.username%>
-                                            </h4>
-                                        </div>
-                                        <div>
-                                            <div>
-                                                <input type="hidden" name="senderId" id="senderId"
-                                                    value="<%=i.userId%>">
-                                                <input type="hidden" name="senderName" id="senderName"
-                                                    value="<%=i.username%>">
-                                                <button type="submit" id="accept_friend" class="btn"><i
-                                                        class="fa-solid fa-check"></i></button>
-                                            </div>
-                                            <div>
-                                                <input type="hidden" name="user_Id" id="user_Id" value="<%=i.userId%>">
-                                                <button type="submit" id="cancel_friend" class="btn"><i
-                                                        class="fa-solid fa-xmark"></i></button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <%}%>
-                                        <%}else{%>
-                                            <div>
-                                                <h4 style="text-align:center">No requests</h4>
-                                            </div>
-                                            <%}%>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="profile-li"><a href="/users/profile/<%= user._id %>"><button><span>
-                                <%= user.name.split(' ')[0] %></span><i style="display: none;" class="fa-solid fa-user"></i></button></a></li>
-            <li class="signout-li">
-                <a href="/users/signout"><button><span>Sign-Out</span><i style="display:none;"class="fa-solid fa-arrow-right-from-bracket"></i></button></a>
-            
-            </li>
-        <% }else{%>
-            <li>
-                <a href="/users/login"><button>Sign-In</button></a>
-            </li>
-            <li>
-                <a href="/users/signup"><button>Sign-Up</button></a>
-            </li>
-        <%}%>
-    </ul>
-    <%if(locals.user){%>
-    <a href="javascript:void(0);" class="icon" onclick="opennav()">
-        <i class="fa fa-bars"></i>
-      </a>
-    <%}%>
     </nav>
 </header>

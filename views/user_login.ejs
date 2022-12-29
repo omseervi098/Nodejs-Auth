@@ -1,29 +1,65 @@
 <link rel="stylesheet" href="<%=assetPath('css/loginandsignup.css')%>">
 <div class="outer-container">
-    <div class="container">
-        <div class="left">
-            <div class="logo"><img src="<%=assetPath('images/logo.png')%>" alt="logo"></div>
-            <div>
-                <p>New here ?</p>
-                <button class="white-btn"><a href="/users/auth/google"><img
-                            src="<%=assetPath('images/google-icon.png')%>">Sign In/Signup</a></button>
+    <div class="login-page bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <h3 class="mb-3">Login Now</h3>
+                    <div class="bg-white shadow rounded">
+                        <div class="row">
+                            <div class="col-md-7 pe-0">
+                                <div class="form-left h-100 py-5 px-5">
+                                    <form action="" class="row g-4">
+                                        <div class="col-12">
+                                            <label>Username<span class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-text"><i class="bi bi-person-fill"></i>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Enter Username">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label>Password<span class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
+                                                <input type="text" class="form-control" placeholder="Enter Password">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="inlineFormCheck">
+                                                <label class="form-check-label" for="inlineFormCheck">Remember
+                                                    me</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <a href="#" class="float-end text-primary">Forgot Password?</a>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <button type="submit"
+                                                class="btn btn-primary px-4 float-end mt-4">login</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-5 ps-0 d-none d-md-block">
+                                <div class="form-right h-100 bg-primary text-white text-center pt-5">
+                                    <i class="bi bi-bootstrap"></i>
+                                    <h2 class="fs-1">Welcome Back!!!</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-end text-secondary mt-3">Bootstrap 5 Login Page Design</p>
+                </div>
             </div>
         </div>
-        <div class="right">
-            <form action="/users/create-session" method="post">
-                <div>
-                    <label for="email">Email</label>
-                    <input type="text" name="email" id="email" placeholder="abc@xyz.com" />
-                </div>
-                <div>
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" />
-                </div>
-                <input type="submit" value="Login" class="purple-btn" />
-                <div id="forget-div">
-                    <button class="purple-btn forget-btn"><a href="/users/forgot-password">Forget Password?</a></button>
-                </div>
-            </form>
-        </div>
     </div>
+
+
+    </html>
 </div>
