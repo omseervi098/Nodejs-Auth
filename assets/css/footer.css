@@ -1,0 +1,39 @@
+footer {
+  width: 100%;
+  height: auto;
+  margin-bottom: auto;
+  background-color: #8a2be2;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px; }
+  footer div {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    gap: 5px; }
+    footer div img {
+      width: 25px;
+      height: 25px;
+      margin: 0px 5px; }
+    footer div p {
+      margin: 0px;
+      font-size: 1.04rem;
+      color: white;
+      font-weight: bold;
+      border-right: 1px solid #272727;
+      padding: 6px 2px 2px 2px;
+      margin-left: -4px; }
+      footer div p a,
+      footer div p a:hover,
+      footer div p a:visited,
+      footer div p a:link {
+        color: inherit;
+        text-decoration: none; }
+      footer div p:hover {
+        background-color: #bb79f9;
+        cursor: pointer; }
+      footer div p:last-child {
+        border-right: none;
+        cursor: text; }

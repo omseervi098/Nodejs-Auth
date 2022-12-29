@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="<%=assetPath('css/loginandsignup.css')%>">
+<div class="outer-container">
+    <div class="container">
+        <div class="left">
+            <div class="logo"><img src="<%=assetPath('images/logo.png')%>" alt="logo"></div>
+            <div>
+                <p>Already Have Account ?</p>
+                <a href="/users/auth/google"><button class="white-btn"><img
+                            src="<%=assetPath('images/google-icon.png')%>">Sign In/Signup</button></a>
+            </div>
+        </div>
+        <div class="right">
+            <form action="/users/verify-email" method="post">
+                <div>
+                    <label type="text" name="name">Name</label>
+                    <input type="text" name="name" placeholder="Name" id="name">
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="abc@xyz.com" />
+                </div>
+                <div>
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" />
+                </div>
+                <div>
+                    <label for="password">Confirm Password</label>
+                    <input type="password" name="confirm_password" id="password" />
+                </div>
+                <input type="submit" id="signup" value="signup" class="purple-btn" />
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <title>SocioKnct</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="description" content="node-authentication">
+    <meta name="author" content="omprakash choudhary">
+    <meta name="keywords" content="node-authentication, node-auth ,social-auth">
+
+    <link href="https://cdnout.com/noty/noty.min.css" rel="stylesheet" media="all">
+    <script src="https://cdnout.com/noty/noty.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://kit.fontawesome.com/4499aac38f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="<%=assetPath('css/layout.css')%>">
+    <link rel="stylesheet" href="<%=assetPath('css/header.css')%>">
+    <link rel="stylesheet" href="<%=assetPath('css/footer.css')%>">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src 'self';font-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' ; script-src 'self'">  -->
+    <%- style %>
+</head>
+
+<body>
+
+    <%- include('_header') %>
+        <div id="main-containe">
+            <%- body %>
+        </div>
+        <%- include('_footer') %>
+
+
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+<footer>
+    <div>
+        <img src="<%=assetPath('images/logo_icon.png') %>" alt="logo">
+    </div>
+    <div>
+        <p><a href="/">Home</a></p>
+        <% if(locals.user){ %>
+            <p><a href="/users/profile/<%= user.id %>">Profile</a></p>
+            <%}%>
+                <p>@ made by Omprakash Choudhary</p>
+    </div>
+</footer>

@@ -1,0 +1,243 @@
+header {
+  width: 100%;
+  height: auto;
+  background-color: #8a2be2;
+  padding: 0px 0px; }
+  header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; }
+    header nav .icon {
+      display: none; }
+    header nav div a {
+      display: flex;
+      justify-content: flex-start;
+      align-content: center;
+      gap: 2px; }
+      header nav div a, header nav div a:hover, header nav div a:focus, header nav div a:active {
+        color: inherit;
+        text-decoration: none; }
+      header nav div a img {
+        width: 50px;
+        height: 50px; }
+      header nav div a div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; }
+        header nav div a div p {
+          margin: 0px;
+          font-size: 1.4rem;
+          color: white;
+          font-weight: bold; }
+    header nav ul {
+      display: flex;
+      justify-content: flex-end;
+      align-content: center;
+      list-style-type: none;
+      gap: 5px; }
+      header nav ul li .dropdown {
+        position: relative;
+        display: inline-block; }
+        header nav ul li .dropdown .dropbtn {
+          background-color: #3f045f;
+          color: white;
+          padding: 0px 15px;
+          height: 100%;
+          font-size: 16px;
+          border: none;
+          cursor: pointer; }
+          header nav ul li .dropdown .dropbtn span {
+            display: none; }
+        header nav ul li .dropdown .dropdown-content {
+          left: -100px;
+          top: 30px;
+          display: none;
+          position: absolute;
+          background-color: #cfd8ff;
+          width: 250px;
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          z-index: 1;
+          -ms-overflow-style: none;
+          overflow: auto; }
+          header nav ul li .dropdown .dropdown-content::-webkit-scrollbar {
+            display: none; }
+          header nav ul li .dropdown .dropdown-content div {
+            list-style: none;
+            margin: 0;
+            justify-content: center;
+            width: 100%;
+            padding: 4px 4px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center; }
+            header nav ul li .dropdown .dropdown-content div div {
+              display: block; }
+              header nav ul li .dropdown .dropdown-content div div h4 {
+                font-size: 1.2rem;
+                padding: 0;
+                margin: 0; }
+            header nav ul li .dropdown .dropdown-content div div {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: row;
+              gap: 2px; }
+              header nav ul li .dropdown .dropdown-content div div div button {
+                background-color: #3f045f;
+                color: white;
+                padding: 6px;
+                width: 100%;
+                height: 100%;
+                font-size: 16px;
+                border-radius: 10%;
+                border: none;
+                cursor: pointer; }
+        header nav ul li .dropdown .dropdown-content > div {
+          color: black;
+          text-decoration: none; }
+          header nav ul li .dropdown .dropdown-content > div:hover {
+            background-color: #f1f1f1; }
+        header nav ul li .dropdown .show {
+          display: block;
+          right: 10%; }
+        header nav ul li .dropdown:hover .dropbtn {
+          background-color: #0195ff; }
+      header nav ul li input {
+        background-color: #ededed;
+        border: none;
+        padding: 2px 4px;
+        height: 100%;
+        width: auto;
+        margin-right: 10px;
+        font-size: 1.07rem;
+        color: #5f2a8a;
+        font-weight: bold;
+        border-radius: 3px; }
+        header nav ul li input:focus {
+          outline: none; }
+      header nav ul li button {
+        background-color: #dedede;
+        border: none;
+        padding: 0px 4px;
+        width: auto;
+        height: 100%;
+        margin-right: 10px;
+        font-size: 1.07rem;
+        color: #5f2a8a;
+        font-weight: bold;
+        border-radius: 5px; }
+        header nav ul li button:hover {
+          background-color: #1cc7dd;
+          color: white;
+          cursor: pointer; }
+        header nav ul li button a:hover,
+        header nav ul li button a:visited,
+        header nav ul li button a:link {
+          color: inherit;
+          text-decoration: none; }
+      header nav ul li .drop-button {
+        display: flex;
+        justify-content: flex-start;
+        align-content: center;
+        gap: 2px; }
+        header nav ul li .drop-button, header nav ul li .drop-button:hover, header nav ul li .drop-button:focus, header nav ul li .drop-button:active {
+          color: inherit;
+          text-decoration: none; }
+        header nav ul li .drop-button i {
+          color: white; }
+
+@media screen and (max-width: 768px) {
+  header nav ul li .dropdown .dropdown-content {
+    position: absolute;
+    left: -120px; }
+  header nav ul li a button i {
+    display: block !important; }
+  header nav ul li a button span {
+    display: none; } }
+
+@media screen and (max-width: 600px) {
+  .dropdown .dropdown-content {
+    position: absolute;
+    left: 0px; }
+  header {
+    width: 100.5%; }
+  .topnav .friend-dropdown-li,
+  .topnav .profile-li,
+  .topnav .signout-li {
+    display: none; }
+  .topnav a.icon {
+    float: right;
+    display: block;
+    padding: 14px 14px;
+    background-color: #d086f5;
+    color: white;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px; }
+  .topnav .icon:hover {
+    background-color: #ddd;
+    color: black;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px; } }
+
+@media screen and (max-width: 600px) {
+  .responsive {
+    position: relative; }
+  .responsive ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+  .responsive .search-li {
+    align-self: flex-start; }
+  .responsive .friend-dropdown-li .dropdown .dropbtn {
+    display: flex;
+    justify-content: space-evenly;
+    width: 45vw;
+    padding: 5px 15px; }
+    .responsive .friend-dropdown-li .dropdown .dropbtn span {
+      display: block; }
+  .responsive a {
+    text-decoration: none; }
+  .responsive .profile-li,
+  .responsive .signout-li {
+    text-align: start; }
+    .responsive .profile-li button,
+    .responsive .signout-li button {
+      display: flex;
+      justify-content: space-evenly;
+      width: 45vw;
+      padding: 5px 15px; }
+      .responsive .profile-li button span,
+      .responsive .signout-li button span {
+        display: block; }
+  .responsive a.icon {
+    align-self: flex-start;
+    margin-top: 6px; }
+  .responsive .friend-dropdown-li,
+  .responsive .profile-li,
+  .responsive .signout-li {
+    float: none;
+    display: flex; } }
+
+@media screen and (max-width: 420px) {
+  .topnav .search-li {
+    display: none; }
+  .responsive .search-li {
+    float: none;
+    display: flex; }
+    .responsive .search-li input {
+      width: 30vw; }
+  .responsive .search-li {
+    align-self: flex-start; }
+  .responsive .friend-dropdown-li .dropdown .dropbtn {
+    width: 30vw; }
+    .responsive .friend-dropdown-li .dropdown .dropbtn span {
+      display: none; }
+  .responsive .profile-li button,
+  .responsive .signout-li button {
+    width: 30vw; }
+    .responsive .profile-li button span,
+    .responsive .signout-li button span {
+      display: none; } }
