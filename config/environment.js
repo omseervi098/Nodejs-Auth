@@ -6,13 +6,16 @@ const development = {
   db_url: process.env.MONGODB_URL,
   db: process.env.DEV_DB,
   smtp: {
-    service: "gmail",
-    host: "smtp.gmail.com",
+    pool: true,
+    host: "smtp.socioknct.tech",
     port: 587,
-    secure: true,
+    secure: false,
     auth: {
       user: process.env.GMAIL_USERNAME,
       pass: process.env.GMAIL_PASSWORD,
+    },
+    tls: {
+      rejectUnauthorized: false,
     },
   },
   google_clientID: process.env.GOOGLE_CLIENT_ID,

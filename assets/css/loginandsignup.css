@@ -1,12 +1,29 @@
 a {
   text-decoration: none; }
 
-.login-page {
+.outer-container .login-page {
   width: 100%;
   height: 100vh;
   display: inline-block;
   display: flex;
   align-items: center; }
+  .outer-container .login-page .logincon {
+    border-radius: 20px;
+    overflow: hidden; }
+    .outer-container .login-page .logincon .form-right .bi-shield-lock-fill {
+      font-size: 100px; }
+    .outer-container .login-page .logincon .form-right a button {
+      font-size: 20px;
+      border-radius: 20px; }
+    .outer-container .login-page .logincon .form-left form button {
+      font-size: 20px; }
 
-.form-right i {
-  font-size: 100px; }
+@media screen and (max-width: 768px) {
+  .showonsm {
+    display: block !important; }
+  .outer-container .login-page .form-left form .signup {
+    text-align: center !important; }
+    .outer-container .login-page .form-left form .signup button {
+      float: none !important; }
+  .outer-container .login-page .form-left .glogin {
+    font-size: larger; } }

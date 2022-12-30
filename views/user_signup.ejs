@@ -1,34 +1,106 @@
 <link rel="stylesheet" href="<%=assetPath('css/loginandsignup.css')%>">
-<div class="outer-container">
-    <div class="container">
-        <div class="left">
-            <div class="logo"><img src="<%=assetPath('images/logo.png')%>" alt="logo"></div>
-            <div>
-                <p>Already Have Account ?</p>
-                <a href="/users/auth/google"><button class="white-btn"><img
-                            src="<%=assetPath('images/google-icon.png')%>">Sign In/Signup</button></a>
+<link rel="stylesheet" href="<%=assetPath('css/loginandsignup.css')%>">
+<div class="outer-container ">
+    <div class="login-page bg-light">
+        <div class="container ">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="bg-white shadow logincon ">
+                        <div class="row ">
+                            <div class="col-md-5 ps-0 d-none d-md-block ">
+                                <div class="form-right h-100 bg-primary text-white text-center pt-5">
+                                    <i class="bi bi-shield-lock-fill"></i>
+                                    <h2 class="mt-4">New here ?</h2>
+                                    <div class="d-flex flex-column ">
+                                        <a href="/users/auth/google" class="my-4">
+                                            <button class="btn btn-light px-4 mt-4 ">
+                                                <img src="<%=assetPath('images/google-icon.png')%>"
+                                                    class="me-2 img-fluid" width="30px" alt="google-icon">
+                                                <span>Sign In/Signup</span>
+                                            </button>
+                                        </a>
+
+                                        <a href="/users/login" class="col-12">
+                                            <button class="btn btn-light px-2 mt-4 py-2">
+                                                <i class="bi bi-box-arrow-in-right"></i>
+                                                <span>&nbsp;Already signedup ?</span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7 pe-0">
+                                <div class="form-left h-100 py-3 px-5">
+                                    <form action="/users/verify-email" method="post" class="row g-4">
+                                        <div class="col-12">
+                                            <label for="name">Name<span class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-text"><i class="bi bi-person-fill "></i>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Enter Name"
+                                                    name="name" id="name" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="email">Email<span class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-text"><i class="bi bi-envelope-fill"></i>
+                                                </div>
+                                                <input type="email" class="form-control" placeholder="Enter Email"
+                                                    name="email" id="email" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="password">Password<span class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
+                                                <input type="password" class="form-control" placeholder="Enter Password"
+                                                    name="password" id="password" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="confirm_password">Confirm Password<span
+                                                    class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
+                                                <input type="password" class="form-control"
+                                                    placeholder="Enter Password Again" name="confirm_password"
+                                                    id="confirm_password" required>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-12 signup">
+                                            <button type="submit" class="btn btn-primary px-4 float-end">
+                                                <i class="bi bi-box-arrow-in-right"></i>
+                                                &nbsp;Sign Up
+                                            </button>
+                                        </div>
+
+                                    </form>
+                                    <div class="col-12 text-center">
+                                        <a href="/users/auth/google" class="p-0 d-none showonsm ">
+                                            <hr>
+                                            <button class="btn btn-dark px-4 glogin mt-2 ">
+                                                <img src="<%=assetPath('images/google-icon.png')%>" class=" img-fluid"
+                                                    width="30px" alt="google-icon">
+                                                <span>Sign In/Signup</span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
-        </div>
-        <div class="right">
-            <form action="/users/verify-email" method="post">
-                <div>
-                    <label type="text" name="name">Name</label>
-                    <input type="text" name="name" placeholder="Name" id="name">
-                </div>
-                <div>
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" placeholder="abc@xyz.com" />
-                </div>
-                <div>
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" />
-                </div>
-                <div>
-                    <label for="password">Confirm Password</label>
-                    <input type="password" name="confirm_password" id="password" />
-                </div>
-                <input type="submit" id="signup" value="signup" class="purple-btn" />
-            </form>
         </div>
     </div>
 </div>
+<script>
+
+</script>

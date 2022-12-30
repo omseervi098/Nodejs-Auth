@@ -1,0 +1,129 @@
+<div class="outer-container">
+    <div class="reset-page h-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3 mt-4">
+                    <div class="bg-white rounded shadow">
+                        <div class="row">
+                            <div class="pe-0">
+                                <div class="form-left py-4 px-5">
+                                    <h2 class="text-center">Reset Password</h2>
+                                    <form action="/users/updatepass" method="post" class="row g-4" id="updatepassform">
+                                        <div class="col-12">
+                                            <label for="email">Email<span class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-text"><i class="bi bi-person-fill"></i>
+                                                </div>
+                                                <input type="email" class="form-control" placeholder="<%=user.email%>"
+                                                    name="email" id="email" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="oldpassword">Old Password<span
+                                                    class="text-danger">*</span></label>
+
+                                            <input type="password" class="form-control" placeholder="Enter old password"
+                                                name="oldpassword" id="oldpassword" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="newpassword">New Password<span
+                                                    class="text-danger">*</span></label>
+
+                                            <input type="password" class="form-control" placeholder="Enter New password"
+                                                name="newpassword" id="newpassword" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="confirmpass">New Password<span
+                                                    class="text-danger">*</span></label>
+
+                                            <input type="password" class="form-control"
+                                                placeholder="Confirm new password" name="confirmpass" id="confirmpass"
+                                                required>
+                                        </div>
+                                        <div class="col-12 text-center">
+                                            <button type="submit" class="btn btn-primary">Reset Password</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        let form = $('#updatepassform');
+        form.submit(function (e) {
+            e.preventDefault();
+            let oldpassword = $("#oldpassword").val();
+            let newpassword = $("#newpassword").val();
+            let confirmpass = $("#confirmpass").val();
+            console.log(oldpassword, newpassword, confirmpass);
+            if (newpassword != confirmpass) {
+                new Noty({
+                    type: 'error',
+                    layout: 'topRight',
+                    text: "Password and confirm password doesn't match",
+                    timeout: 1000,
+                    progressBar: true,
+                    theme: 'relax',
+                }).show();
+            } else if (oldpassword === newpassword) {
+                new Noty({
+                    type: 'error',
+                    layout: 'topRight',
+                    text: "Old password and new password can't be same",
+                    timeout: 1000,
+                    progressBar: true,
+                    theme: 'relax',
+                }).show();
+            }
+            else {
+                //to check password strength
+                let strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
+                if (!strongRegex.test(newpassword)) {
+                    new Noty({
+                        type: 'error',
+                        layout: 'topRight',
+                        text: "Password must contain atleast 8 characters, 1 uppercase, 1 lowercase and 1 number",
+                        timeout: 1000,
+                        progressBar: true,
+                        theme: 'relax',
+                    }).show();
+                    return;
+                } else {
+                    $.ajax({
+                        url: "/users/updatepass",
+                        type: "POST",
+                        data: form.serialize(),
+                        success: (data) => {
+                            new Noty({
+                                type: 'success',
+                                layout: 'topRight',
+                                text: "Password updated successfully",
+                                timeout: 1000,
+                                progressBar: true,
+                                theme: 'relax',
+                            }).show();
+                            form[0].reset();
+                        }, error: (err) => {
+                            new Noty({
+                                type: 'error',
+                                layout: 'topRight',
+                                text: "Something went wrong",
+                                timeout: 1000,
+                                progressBar: true,
+                                theme: 'relax',
+                            }).show();
+                        }
+                    })
+                }
+            }
+        }
+        )
+    })  
+</script>

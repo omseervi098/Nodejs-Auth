@@ -4,62 +4,74 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
-                    <h3 class="mb-3">Login Now</h3>
-                    <div class="bg-white shadow rounded">
+                    <div class="bg-white shadow logincon">
                         <div class="row">
+                            <div class="col-md-5 ps-0 d-none d-md-block">
+                                <div class="form-right h-100 bg-primary text-white text-center pt-5">
+                                    <i class="bi bi-shield-lock-fill"></i>
+                                    <h2 class="mt-4">Welcome back !!</h2>
+                                    <a href="/users/auth/google">
+                                        <button class="btn btn-light px-4 mt-4">
+                                            <img src="<%=assetPath('images/google-icon.png')%>" class="me-2 img-fluid"
+                                                width="30px" alt="google-icon">
+                                            <span>Sign In/Signup</span>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
                             <div class="col-md-7 pe-0">
                                 <div class="form-left h-100 py-5 px-5">
-                                    <form action="" class="row g-4">
+                                    <form action="/users/create-session" method="post" class="row g-4">
                                         <div class="col-12">
-                                            <label>Username<span class="text-danger">*</span></label>
+                                            <label for="email">Email<span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="bi bi-person-fill"></i>
                                                 </div>
-                                                <input type="text" class="form-control" placeholder="Enter Username">
+                                                <input type="email" class="form-control" placeholder="Enter Email"
+                                                    name="email" id="email" required>
                                             </div>
                                         </div>
 
                                         <div class="col-12">
-                                            <label>Password<span class="text-danger">*</span></label>
+                                            <label for="password">Password<span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
-                                                <input type="text" class="form-control" placeholder="Enter Password">
+                                                <input type="password" class="form-control" placeholder="Enter Password"
+                                                    name="password" id="password" required>
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-6">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="inlineFormCheck">
-                                                <label class="form-check-label" for="inlineFormCheck">Remember
-                                                    me</label>
-                                            </div>
+
+                                        <div class="col-sm-4">
+                                            <a href="/users/forgot-password" class="float-end text-primary">Forgot
+                                                Password?</a>
                                         </div>
 
-                                        <div class="col-sm-6">
-                                            <a href="#" class="float-end text-primary">Forgot Password?</a>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <button type="submit"
-                                                class="btn btn-primary px-4 float-end mt-4">login</button>
+                                        <div class="col-12 login">
+                                            <button type="submit" class="btn btn-primary px-4 float-end mb-2">
+                                                <i class="bi bi-box-arrow-in-right"></i>
+                                                &nbsp;Login
+                                            </button>
                                         </div>
                                     </form>
+                                    <div class="col-12 text-center">
+                                        <a href="/users/auth/google" class="p-0 d-none showonsm ">
+                                            <hr>
+                                            <button class="btn btn-dark px-4 glogin mt-2 ">
+                                                <img src="<%=assetPath('images/google-icon.png')%>" class=" img-fluid"
+                                                    width="30px" alt="google-icon">
+                                                <span>Sign In/Signup</span>
+                                            </button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-5 ps-0 d-none d-md-block">
-                                <div class="form-right h-100 bg-primary text-white text-center pt-5">
-                                    <i class="bi bi-bootstrap"></i>
-                                    <h2 class="fs-1">Welcome Back!!!</h2>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
-                    <p class="text-end text-secondary mt-3">Bootstrap 5 Login Page Design</p>
+
                 </div>
             </div>
         </div>
     </div>
-
-
-    </html>
 </div>
