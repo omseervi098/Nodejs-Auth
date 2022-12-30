@@ -3,8 +3,7 @@ const request = require("request");
 const forgotPass = require("../models/forgotpass");
 const crypto = require("crypto");
 const verifyEmail = require("../models/verifyemail");
-const verifyEmailMailer = require("../mailers/verifyemail_mailer");
-const forgotpassMailer = require("../mailers/forgotpass_mailer");
+const { encrypt, decrypt } = require("../config/crypto");
 const forgotPassQueue = require("../workers/forgotpass_email_worker");
 const verifyEmailQueue = require("../workers/verify_email_worker");
 module.exports.login = function (req, res) {
@@ -19,29 +18,31 @@ module.exports.signup = function (req, res) {
 };
 
 module.exports.verifyEmail = async (req, res) => {
-  if (
-    req.body["g-recaptcha-response"] === undefined ||
-    req.body["g-recaptcha-response"] === "" ||
-    req.body["g-recaptcha-response"] === null
-  ) {
-    req.flash("error", "Please select captcha");
-    return res.redirect("back");
-  }
-  const secretKey = process.env.GOOGLE_RECAPTCHA_SECRET_KEY;
-  const verificationURL =
-    "https://www.google.com/recaptcha/api/siteverify?secret=" +
-    secretKey +
-    "&response=" +
-    req.body["g-recaptcha-response"] +
-    "&remoteip=" +
-    req.connection.remoteAddress;
-  request(verificationURL, function (error, response, body) {
-    body = JSON.parse(body);
-    if (body.success !== undefined && !body.success) {
-      req.flash("error", "Captcha verification failed");
+  if (req.body.normallogin == "true") {
+    if (
+      req.body["g-recaptcha-response"] === undefined ||
+      req.body["g-recaptcha-response"] === "" ||
+      req.body["g-recaptcha-response"] === null
+    ) {
+      req.flash("error", "Please select captcha");
       return res.redirect("back");
     }
-  });
+    const secretKey = process.env.GOOGLE_RECAPTCHA_SECRET_KEY;
+    const verificationURL =
+      "https://www.google.com/recaptcha/api/siteverify?secret=" +
+      secretKey +
+      "&response=" +
+      req.body["g-recaptcha-response"] +
+      "&remoteip=" +
+      req.connection.remoteAddress;
+    request(verificationURL, function (error, response, body) {
+      body = JSON.parse(body);
+      if (body.success !== undefined && !body.success) {
+        req.flash("error", "Captcha verification failed");
+        return res.redirect("back");
+      }
+    });
+  }
   try {
     if (req.body.password.length < 8) {
       req.flash("error", "Password should be atleast 6 characters long");
@@ -86,7 +87,7 @@ module.exports.verifyEmail = async (req, res) => {
     //save token in the database
     let verifyemails = await verifyEmail.create({
       username: username,
-      password: req.body.password,
+      password: encrypt(req.body.password),
       name: req.body.name,
       email: req.body.email,
       token: token,
@@ -146,31 +147,36 @@ module.exports.create = async function (req, res) {
 };
 //Get login data
 module.exports.createSession = function (req, res) {
-  if (
-    req.body["g-recaptcha-response"] === undefined ||
-    req.body["g-recaptcha-response"] === "" ||
-    req.body["g-recaptcha-response"] === null
-  ) {
-    req.flash("error", "Please select captcha");
-    return res.redirect("back");
-  }
-  const secretKey = process.env.GOOGLE_RECAPTCHA_SECRET_KEY;
-  const verificationURL =
-    "https://www.google.com/recaptcha/api/siteverify?secret=" +
-    secretKey +
-    "&response=" +
-    req.body["g-recaptcha-response"] +
-    "&remoteip=" +
-    req.connection.remoteAddress;
-  request(verificationURL, function (error, response, body) {
-    body = JSON.parse(body);
-    if (body.success !== undefined && !body.success) {
-      req.flash("error", "Captcha verification failed");
+  if (req.body.normallogin == "true") {
+    if (
+      req.body["g-recaptcha-response"] === undefined ||
+      req.body["g-recaptcha-response"] === "" ||
+      req.body["g-recaptcha-response"] === null
+    ) {
+      req.flash("error", "Please select captcha");
       return res.redirect("back");
     }
+    const secretKey = process.env.GOOGLE_RECAPTCHA_SECRET_KEY;
+    const verificationURL =
+      "https://www.google.com/recaptcha/api/siteverify?secret=" +
+      secretKey +
+      "&response=" +
+      req.body["g-recaptcha-response"] +
+      "&remoteip=" +
+      req.connection.remoteAddress;
+    request(verificationURL, function (error, response, body) {
+      body = JSON.parse(body);
+      if (body.success !== undefined && !body.success) {
+        req.flash("error", "Captcha verification failed");
+        return res.redirect("back");
+      }
+      req.flash("success", "Logged in successfully");
+      return res.redirect("/");
+    });
+  } else {
     req.flash("success", "Logged in successfully");
     return res.redirect("/");
-  });
+  }
 };
 //Sign Out
 module.exports.destroySession = function (req, res) {
@@ -191,16 +197,17 @@ module.exports.updatepass = async function (req, res) {
   if (req.xhr) {
     try {
       let user = await User.findOne(req.user);
+
       if (
         req.body.oldpassword != null &&
-        req.body.oldpassword != user.password
+        decrypt(user.password) !== req.body.oldpassword
       ) {
         return res.status(500).json({
           status: "error",
           message: "Old password is incorrect",
         });
       }
-      user.password = req.body.newpassword;
+      user.password = encrypt(req.body.newpassword);
       user.save();
       return res.status(200).json({
         status: "success",
@@ -251,6 +258,7 @@ module.exports.createAccessToken = async (req, res) => {
 
 module.exports.resetPassword = async (req, res) => {
   //Check if token is valid or not
+
   try {
     let forgotpass = await forgotPass.findOne({
       accessToken: req.query.accessToken,
@@ -270,7 +278,6 @@ module.exports.resetPassword = async (req, res) => {
 };
 module.exports.updatePassword = async (req, res) => {
   try {
-    console.log(req.query.accessToken);
     let forgotpass = await forgotPass.findOne({
       accessToken: req.query.accessToken,
       isUsed: false,
@@ -287,8 +294,8 @@ module.exports.updatePassword = async (req, res) => {
 
     if (user) {
       //Mark as used the token
-      console.log(req.body);
-      user.password = req.body.newpassword1;
+
+      user.password = encrypt(req.body.newpassword1);
       user.save();
       forgotpass.isUsed = true;
       forgotpass.save();

@@ -22,5 +22,9 @@ const development = {
   google_clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   google_callbackURL: process.env.GOOGLE_CALLBACK_URL,
   jwt_secret: process.env.JWT_SECRET,
+  crypto_alg: process.env.CRYPTO_ALGORITHM,
+  crypto_key: process.env.CRYPTO_SECRET,
+  captcha_secret: process.env.GOOGLE_RECAPTCHA_SECRET_KEY,
+  captcha_sitekey: process.env.GOOGLE_RECAPTCHA_SITE_KEY,
 };
 module.exports = development;

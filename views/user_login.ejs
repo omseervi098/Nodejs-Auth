@@ -21,7 +21,7 @@
                             </div>
                             <div class="col-md-7 pe-0">
                                 <div class="form-left h-100 py-3 px-5">
-                                    <form action="/users/create-session" method="post" class="row g-4">
+                                    <form action="/users/create-session" method="post" class="row g-4" id="loginform">
                                         <div class="col-12">
                                             <h1 class="text-center d-none showonsm">Login</h1>
                                             <label for="email">Email<span class="text-danger">*</span></label>
@@ -41,7 +41,9 @@
                                                     name="password" id="password" required>
                                             </div>
                                         </div>
-
+                                        <div class="col-12 d-none">
+                                            <input type="hidden" name="normallogin" value="true">
+                                        </div>
                                         <div class="col-12 py-0">
                                             <div class="g-recaptcha"
                                                 data-sitekey="6LcPo7wjAAAAAOkGmTzzjSsfwFBRU_ODzDlw7fI-"></div>

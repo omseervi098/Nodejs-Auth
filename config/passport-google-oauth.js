@@ -3,7 +3,7 @@ const googleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const crypto = require("crypto");
 const User = require("../models/user");
 const env = require("./environment");
-
+const { encrypt } = require("./crypto");
 //Tell passport to use a new strategy for google login
 passport.use(
   new googleStrategy(
@@ -40,7 +40,7 @@ passport.use(
             {
               name: profile.displayName,
               email: profile.emails[0].value,
-              password: crypto.randomBytes(20).toString("hex"),
+              password: encrypt(crypto.randomBytes(20).toString("hex")),
               username: username,
             },
             function (err, user) {

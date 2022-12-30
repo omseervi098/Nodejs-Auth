@@ -11,7 +11,7 @@ const verifyEmailSchema = new mongoose.Schema(
       required: true,
     },
     password: {
-      type: String,
+      type: Object,
       required: true,
     },
     email: {

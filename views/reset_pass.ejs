@@ -114,7 +114,7 @@
                             new Noty({
                                 type: 'error',
                                 layout: 'topRight',
-                                text: "Something went wrong",
+                                text: err.responseJSON.message,
                                 timeout: 1000,
                                 progressBar: true,
                                 theme: 'relax',

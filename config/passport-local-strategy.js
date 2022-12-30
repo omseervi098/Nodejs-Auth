@@ -1,6 +1,7 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("../models/user");
+const { decrypt } = require("../config/crypto");
 //Authentication using passport
 passport.use(
   new LocalStrategy(
@@ -15,7 +16,8 @@ passport.use(
           req.flash("error", "Error in finding user");
           return done(err);
         }
-        if (!user || user.password != password) {
+
+        if (!user || decrypt(user.password) != password) {
           req.flash("error", "Invalid Username/Password");
           return done(null, false);
         }
