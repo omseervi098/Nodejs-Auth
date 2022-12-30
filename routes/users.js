@@ -29,6 +29,7 @@ router.post(
   usersController.createAccessToken
 );
 router.get("/forgot-password/reset-password/", usersController.resetPassword);
+router.post("/forgot-password/updatepass", usersController.updatePassword);
 router.get(
   "/auth/google",
   passport.authenticate("google", {

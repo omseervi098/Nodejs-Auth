@@ -205,22 +205,45 @@ module.exports.resetPassword = async (req, res) => {
       accessToken: req.query.accessToken,
       isUsed: false,
     });
-    if (!forgotpass) {
-      req.flash("error", "Invalid token");
-      return res.redirect("back");
-    }
-    forgotpass.isUsed = true;
-    forgotpass.save();
-    if (!forgotpass) {
-      req.flash("error", "Invalid token");
-      return res.redirect("back");
-    }
+
     forgotpass = await forgotpass.populate("user", "email name");
 
     return res.render("../views/reset_password", {
       accessToken: req.query.accessToken,
       email: forgotpass.user.email,
     });
+  } catch (err) {
+    console.log(err);
+    return;
+  }
+};
+module.exports.updatePassword = async (req, res) => {
+  try {
+    console.log(req.query.accessToken);
+    let forgotpass = await forgotPass.findOne({
+      accessToken: req.query.accessToken,
+      isUsed: false,
+    });
+    console.log(forgotpass);
+
+    if (!forgotpass) {
+      req.flash("error", "Invalid Token");
+      return res.redirect("back");
+    }
+
+    //If token is valid then update password
+    const user = await User.findOne({ _id: forgotpass.user });
+
+    if (user) {
+      //Mark as used the token
+      console.log(req.body);
+      user.password = req.body.newpassword1;
+      user.save();
+      forgotpass.isUsed = true;
+      forgotpass.save();
+      req.flash("success", "Password updated successfully");
+      return res.redirect("/users/login");
+    }
   } catch (err) {
     console.log(err);
     return;
