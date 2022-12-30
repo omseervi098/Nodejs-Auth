@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="<%=assetPath('css/loginandsignup.css')%>">
 <link rel="stylesheet" href="<%=assetPath('css/loginandsignup.css')%>">
 <div class="outer-container ">
-    <div class="login-page bg-light">
+    <div class="login-page bg-light ">
         <div class="container ">
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
-                    <div class="bg-white shadow logincon ">
+                    <div class="bg-white shadow logincon my-4">
                         <div class="row ">
                             <div class="col-md-5 ps-0 d-none d-md-block ">
                                 <div class="form-right h-100 bg-primary text-white text-center pt-5">
@@ -19,7 +19,6 @@
                                                 <span>Sign In/Signup</span>
                                             </button>
                                         </a>
-
                                         <a href="/users/login" class="col-12">
                                             <button class="btn btn-light px-2 mt-4 py-2">
                                                 <i class="bi bi-box-arrow-in-right"></i>
@@ -33,6 +32,7 @@
                                 <div class="form-left h-100 py-3 px-5">
                                     <form action="/users/verify-email" method="post" class="row g-4">
                                         <div class="col-12">
+
                                             <label for="name">Name<span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="bi bi-person-fill "></i>
@@ -70,8 +70,10 @@
                                                     id="confirm_password" required>
                                             </div>
                                         </div>
-
-
+                                        <div class="col-12 py-0">
+                                            <div class="g-recaptcha"
+                                                data-sitekey="6LcPo7wjAAAAAOkGmTzzjSsfwFBRU_ODzDlw7fI-"></div>
+                                        </div>
                                         <div class="col-12 signup">
                                             <button type="submit" class="btn btn-primary px-4 float-end">
                                                 <i class="bi bi-box-arrow-in-right"></i>

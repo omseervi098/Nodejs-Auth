@@ -8,8 +8,9 @@
     <meta name="description" content="node-authentication">
     <meta name="author" content="omprakash choudhary">
     <meta name="keywords" content="node-authentication, node-auth ,social-auth">
-
-
+    <link rel="icon"
+        href="https://firebasestorage.googleapis.com/v0/b/ipod-e4eb6.appspot.com/o/favicon.ico?alt=media&token=955fdfd4-700f-4fcd-89ae-99cecdebf14b"
+        type="image/x-icon">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -44,7 +45,7 @@
                             text: "<%=flash.success%>",
                             type: 'success',
                             layout: 'topRight',
-                            timeout: 3000
+                            timeout: 2000
                         }).show();
                         <% } %>
                         <% if (flash.error && flash.error.length > 0) {%>
@@ -53,10 +54,12 @@
                             text: "<%=flash.error%>",
                             type: 'error',
                             layout: 'topRight',
-                            timeout: 3000
+                            timeout: 2000
                         }).show();
                         <% } %>
                 </script>
+                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </body>
 
 </html>

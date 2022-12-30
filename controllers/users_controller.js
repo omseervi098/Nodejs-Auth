@@ -1,9 +1,12 @@
 const User = require("../models/user");
+const request = require("request");
 const forgotPass = require("../models/forgotpass");
 const crypto = require("crypto");
 const verifyEmail = require("../models/verifyemail");
 const verifyEmailMailer = require("../mailers/verifyemail_mailer");
 const forgotpassMailer = require("../mailers/forgotpass_mailer");
+const forgotPassQueue = require("../workers/forgotpass_email_worker");
+const verifyEmailQueue = require("../workers/verify_email_worker");
 module.exports.login = function (req, res) {
   return res.render("user_login", {
     title: "Login",
@@ -16,6 +19,29 @@ module.exports.signup = function (req, res) {
 };
 
 module.exports.verifyEmail = async (req, res) => {
+  if (
+    req.body["g-recaptcha-response"] === undefined ||
+    req.body["g-recaptcha-response"] === "" ||
+    req.body["g-recaptcha-response"] === null
+  ) {
+    req.flash("error", "Please select captcha");
+    return res.redirect("back");
+  }
+  const secretKey = process.env.GOOGLE_RECAPTCHA_SECRET_KEY;
+  const verificationURL =
+    "https://www.google.com/recaptcha/api/siteverify?secret=" +
+    secretKey +
+    "&response=" +
+    req.body["g-recaptcha-response"] +
+    "&remoteip=" +
+    req.connection.remoteAddress;
+  request(verificationURL, function (error, response, body) {
+    body = JSON.parse(body);
+    if (body.success !== undefined && !body.success) {
+      req.flash("error", "Captcha verification failed");
+      return res.redirect("back");
+    }
+  });
   try {
     if (req.body.password.length < 8) {
       req.flash("error", "Password should be atleast 6 characters long");
@@ -67,7 +93,8 @@ module.exports.verifyEmail = async (req, res) => {
     });
 
     //send mail to the user
-    verifyEmailMailer.verifyEmailMail(req.body.email, token);
+    verifyEmailQueue.add(verifyemails);
+
     console.log("Sending mail");
     req.flash("success", "Verification mail sent");
     return res.redirect("back");
@@ -107,7 +134,9 @@ module.exports.create = async function (req, res) {
             return;
           }
           req.flash("success", "Your account has been created");
-          return res.redirect("/users/login");
+          return res.render("verified_email", {
+            title: "Email Verified",
+          });
         }
       );
     } else {
@@ -117,9 +146,31 @@ module.exports.create = async function (req, res) {
 };
 //Get login data
 module.exports.createSession = function (req, res) {
-  //console.log(req);
-  req.flash("success", "Logged in successfully");
-  return res.redirect("/");
+  if (
+    req.body["g-recaptcha-response"] === undefined ||
+    req.body["g-recaptcha-response"] === "" ||
+    req.body["g-recaptcha-response"] === null
+  ) {
+    req.flash("error", "Please select captcha");
+    return res.redirect("back");
+  }
+  const secretKey = process.env.GOOGLE_RECAPTCHA_SECRET_KEY;
+  const verificationURL =
+    "https://www.google.com/recaptcha/api/siteverify?secret=" +
+    secretKey +
+    "&response=" +
+    req.body["g-recaptcha-response"] +
+    "&remoteip=" +
+    req.connection.remoteAddress;
+  request(verificationURL, function (error, response, body) {
+    body = JSON.parse(body);
+    if (body.success !== undefined && !body.success) {
+      req.flash("error", "Captcha verification failed");
+      return res.redirect("back");
+    }
+    req.flash("success", "Logged in successfully");
+    return res.redirect("/");
+  });
 };
 //Sign Out
 module.exports.destroySession = function (req, res) {
@@ -188,7 +239,7 @@ module.exports.createAccessToken = async (req, res) => {
 
       forgotpass = await forgotpass.populate("user", "email name");
       //Send mail to user with token
-      forgotpassMailer.newpass(forgotpass);
+      forgotPassQueue.add(forgotpass);
       req.flash("success", "Mail sent successfully");
       return res.redirect("back");
     }

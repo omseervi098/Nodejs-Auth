@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
-                    <div class="bg-white shadow logincon">
+                    <div class="bg-white shadow logincon my-4">
                         <div class="row">
                             <div class="col-md-5 ps-0 d-none d-md-block">
                                 <div class="form-right h-100 bg-primary text-white text-center pt-5">
@@ -20,9 +20,10 @@
                                 </div>
                             </div>
                             <div class="col-md-7 pe-0">
-                                <div class="form-left h-100 py-5 px-5">
+                                <div class="form-left h-100 py-3 px-5">
                                     <form action="/users/create-session" method="post" class="row g-4">
                                         <div class="col-12">
+                                            <h1 class="text-center d-none showonsm">Login</h1>
                                             <label for="email">Email<span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="bi bi-person-fill"></i>
@@ -41,7 +42,10 @@
                                             </div>
                                         </div>
 
-
+                                        <div class="col-12 py-0">
+                                            <div class="g-recaptcha"
+                                                data-sitekey="6LcPo7wjAAAAAOkGmTzzjSsfwFBRU_ODzDlw7fI-"></div>
+                                        </div>
                                         <div class="col-sm-4">
                                             <a href="/users/forgot-password" class="float-end text-primary">Forgot
                                                 Password?</a>

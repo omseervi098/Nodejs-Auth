@@ -15,6 +15,7 @@ const sassMiddleware = require("node-sass-middleware");
 const flash = require("connect-flash");
 const customMware = require("./config/middleware");
 const path = require("path");
+const request = require("request");
 app.use(
   sassMiddleware({
     src: path.join(__dirname, env.asset_path, "scss"),
