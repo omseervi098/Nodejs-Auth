@@ -3,6 +3,7 @@ const forgotPass = require("../models/forgotpass");
 const crypto = require("crypto");
 const verifyEmail = require("../models/verifyemail");
 const verifyEmailMailer = require("../mailers/verifyemail_mailer");
+const forgotpassMailer = require("../mailers/forgotpass_mailer");
 module.exports.login = function (req, res) {
   return res.render("user_login", {
     title: "Login",
@@ -139,7 +140,10 @@ module.exports.updatepass = async function (req, res) {
   if (req.xhr) {
     try {
       let user = await User.findOne(req.user);
-      if (req.body.oldpassword != user.password) {
+      if (
+        req.body.oldpassword != null &&
+        req.body.oldpassword != user.password
+      ) {
         return res.status(500).json({
           status: "error",
           message: "Old password is incorrect",
@@ -156,5 +160,69 @@ module.exports.updatepass = async function (req, res) {
         message: "Internal Server Error",
       });
     }
+  }
+};
+//Forgot Password
+module.exports.forgotPassword = async function (req, res) {
+  return res.render("user_forgetpass", {
+    title: "Forgot Password",
+  });
+};
+
+module.exports.createAccessToken = async (req, res) => {
+  //Creating access token and sending mail to user
+  try {
+    let user = await User.findOne({ email: req.body.email });
+    if (!user) {
+      req.flash("error", "User not found");
+      return res.redirect("back");
+    }
+    if (user) {
+      //If User is found then create random token using crypto library and store it in the database
+      let token = crypto.randomBytes(20).toString("hex");
+      let forgotpass = await forgotPass.create({
+        user: user.id,
+        accessToken: token,
+        isUsed: false,
+      });
+
+      forgotpass = await forgotpass.populate("user", "email name");
+      //Send mail to user with token
+      forgotpassMailer.newpass(forgotpass);
+      req.flash("success", "Mail sent successfully");
+      return res.redirect("back");
+    }
+  } catch (err) {
+    console.log(err);
+    return;
+  }
+};
+
+module.exports.resetPassword = async (req, res) => {
+  //Check if token is valid or not
+  try {
+    let forgotpass = await forgotPass.findOne({
+      accessToken: req.query.accessToken,
+      isUsed: false,
+    });
+    if (!forgotpass) {
+      req.flash("error", "Invalid token");
+      return res.redirect("back");
+    }
+    forgotpass.isUsed = true;
+    forgotpass.save();
+    if (!forgotpass) {
+      req.flash("error", "Invalid token");
+      return res.redirect("back");
+    }
+    forgotpass = await forgotpass.populate("user", "email name");
+
+    return res.render("../views/reset_password", {
+      accessToken: req.query.accessToken,
+      email: forgotpass.user.email,
+    });
+  } catch (err) {
+    console.log(err);
+    return;
   }
 };

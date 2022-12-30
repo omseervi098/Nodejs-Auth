@@ -23,6 +23,12 @@ router.post(
   usersController.updatepass
 );
 router.get("/signout", usersController.destroySession);
+router.get("/forgot-password", usersController.forgotPassword);
+router.post(
+  "/forgot-password/create-access-token",
+  usersController.createAccessToken
+);
+router.get("/forgot-password/reset-password/", usersController.resetPassword);
 router.get(
   "/auth/google",
   passport.authenticate("google", {

@@ -9,6 +9,7 @@ const forgetPassSchema = new mongoose.Schema(
     accessToken: {
       type: String,
       required: true,
+      expires: 600, //10 minutes,
     },
     isUsed: {
       type: Boolean,
