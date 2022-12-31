@@ -13,7 +13,7 @@
       {"src":"*.ttf","use": "@vercel/static"},
       {"src":"*.otf","use": "@vercel/static"},
       {"src":"*.eot","use": "@vercel/static"},
-      {"src":"*.js","use": "@vercel/static"},
+      {"src":"*.html","use": "@vercel/static"},
       {"src":"*.css","use": "@vercel/static"}
 
   ],
