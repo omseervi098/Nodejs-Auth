@@ -1,11 +1,21 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "index.js",
-      "use": "@now/node"
+      {"src":"index.js","use": "@now/node"},
+      {"src":"*.png","use": "@vercel/static"},
+      {"src":"*.jpg","use": "@vercel/static"},
+      {"src":"*.jpeg","use": "@vercel/static"},
+      {"src":"*.gif","use": "@vercel/static"},
+      {"src":"*.svg","use": "@vercel/static"},
+      {"src":"*.ico","use": "@vercel/static"},
+      {"src":"*.woff","use": "@vercel/static"},
+      {"src":"*.woff2","use": "@vercel/static"},
+      {"src":"*.ttf","use": "@vercel/static"},
+      {"src":"*.otf","use": "@vercel/static"},
+      {"src":"*.eot","use": "@vercel/static"},
+      {"src":"*.js","use": "@vercel/static"},
+      {"src":"*.css","use": "@vercel/static"}
 
-    }
   ],
   "routes": [
     {
