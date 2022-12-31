@@ -29,7 +29,7 @@ const development = {
 };
 const production = {
   name: "production",
-  asset_path: "./public/assets",
+  asset_path: process.env.ASSET_PATH,
   session_cookie_key: process.env.SESSION_COOKIE_KEY,
   db_url: process.env.MONGODB_URL,
   db: process.env.DEV_DB,
