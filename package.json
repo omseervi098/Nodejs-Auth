@@ -4,7 +4,7 @@
   "description": "Authenication starter code for any nodejs + ejs application",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "gulp build && nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prod_start": "nodemon index.js"
   },
