@@ -33,7 +33,14 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use(express.static(env.asset_path));
+app.use(
+  express.static(__dirname + env.asset_path, {
+    maxAge: "30d",
+    cacheControl: true,
+    immutable: true,
+    index: false,
+  })
+);
 // for EJS
 app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
