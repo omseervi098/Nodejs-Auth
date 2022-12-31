@@ -33,7 +33,7 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use(express.static(env.asset_path));
+app.use(express.static(path.join(__dirname, env.asset_path)));
 // for EJS
 app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
