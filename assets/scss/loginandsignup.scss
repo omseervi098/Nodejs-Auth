@@ -2,6 +2,8 @@ a {
     text-decoration: none;
 }
 
+
+
 .outer-container {
 
     .login-page {
@@ -27,6 +29,8 @@ a {
 
                     }
                 }
+
+
             }
 
             .form-left {
@@ -45,6 +49,8 @@ a {
     .showonsm {
         display: block !important;
     }
+
+
 
     .outer-container {
 
@@ -70,4 +76,15 @@ a {
             }
         }
     }
+}
+
+@media screen and (max-width:400px) {
+    .recaptcha {
+        width: 100% !important;
+
+        iframe {
+            width: 80% !important;
+        }
+    }
+
 }
