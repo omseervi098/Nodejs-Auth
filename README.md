@@ -1,1 +1,1 @@
-# Nodejs-Auth
+# Nodejs-Auth [https://nodeauth.up.railway.app/]
