@@ -1,0 +1,10 @@
+header .navbar .logo i {
+  font-size: 30px; }
+
+header .navbar .logo span {
+  font-size: 25px; }
+
+@media screen and (max-width: 990px) {
+  header .navbar form {
+    flex-direction: column !important;
+    margin-top: 10px !important; } }
