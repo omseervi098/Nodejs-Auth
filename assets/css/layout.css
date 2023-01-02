@@ -1,1 +1,6 @@
-.outer-container{min-height:80vh}.reset-page{background-color:#795c02dc;min-height:100vh}
+.outer-container {
+  min-height: 80vh; }
+
+.reset-page {
+  background-color: #795c02dc;
+  min-height: 100vh; }
