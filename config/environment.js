@@ -1,5 +1,6 @@
 const config = require("dotenv").config();
 const development = {
+  port: process.env.PORT,
   name: "development",
   asset_path: "./assets",
   session_cookie_key: process.env.SESSION_COOKIE_KEY,
@@ -28,6 +29,7 @@ const development = {
   captcha_sitekey: process.env.GOOGLE_RECAPTCHA_SITE_KEY,
 };
 const production = {
+  port: process.env.PORT,
   name: "production",
   asset_path: process.env.ASSET_PATH,
   session_cookie_key: process.env.SESSION_COOKIE_KEY,

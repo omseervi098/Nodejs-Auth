@@ -4,7 +4,7 @@ const expressLayouts = require("express-ejs-layouts");
 const cookieParser = require("cookie-parser");
 const app = express();
 require("./config/view-helpers")(app);
-const port = 3000;
+const port = env.port || 8000;
 const db = require("./config/mongoose");
 const passportGoogle = require("./config/passport-google-oauth");
 const session = require("express-session");
@@ -33,7 +33,7 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, env.asset_path)));
+app.use(express.static(env.asset_path));
 // for EJS
 app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
