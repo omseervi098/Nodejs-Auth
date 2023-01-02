@@ -282,7 +282,6 @@ module.exports.updatePassword = async (req, res) => {
       accessToken: req.query.accessToken,
       isUsed: false,
     });
-    console.log(forgotpass);
 
     if (!forgotpass) {
       req.flash("error", "Invalid Token");
