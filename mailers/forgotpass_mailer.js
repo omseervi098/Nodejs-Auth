@@ -1,10 +1,12 @@
 const nodemailer = require("../config/nodemailer");
+
 //Another way of export method
 const env = require("../config/environment");
 exports.newpass = (forgotpass) => {
   let htmlString = nodemailer.renderTemplate(
     {
       forgotpass: forgotpass,
+      domain: env.domain,
     },
     "/forgotpass/new_password.ejs"
   );

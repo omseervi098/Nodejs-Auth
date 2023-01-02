@@ -1,5 +1,9 @@
 const config = require("dotenv").config();
 const development = {
+  redis_url: process.env.REDIS_URL,
+  redis_port: process.env.REDIS_PORT,
+  redis_password: process.env.REDIS_PASSWORD,
+  domain: process.env.DOMAIN,
   port: process.env.PORT,
   name: "development",
   asset_path: "./assets",
@@ -29,9 +33,13 @@ const development = {
   captcha_sitekey: process.env.GOOGLE_RECAPTCHA_SITE_KEY,
 };
 const production = {
+  redis_url: process.env.REDIS_URL,
+  redis_port: process.env.REDIS_PORT,
+  redis_password: process.env.REDIS_PASSWORD,
   port: process.env.PORT,
   name: "production",
   asset_path: process.env.ASSET_PATH,
+  domain: process.env.DOMAIN,
   session_cookie_key: process.env.SESSION_COOKIE_KEY,
   db_url: process.env.MONGODB_URL,
   db: process.env.DEV_DB,

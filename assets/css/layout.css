@@ -1,6 +1,6 @@
-.main-container {
+.outer-container {
   min-height: 80vh; }
 
 .reset-page {
   background-color: #795c02dc;
-  padding-bottom: 50px; }
+  min-height: 100vh; }

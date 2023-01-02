@@ -5,6 +5,7 @@ exports.verifyEmailMail = (email, token) => {
   let htmlString = nodemailer.renderTemplate(
     {
       accessToken: token,
+      domain: env.domain,
     },
     "/verify_email/verifyemail.ejs"
   );

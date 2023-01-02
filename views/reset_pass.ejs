@@ -1,51 +1,45 @@
-<div class="outer-container">
-    <div class="reset-page h-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 offset-lg-3 mt-4">
-                    <div class="bg-white rounded shadow">
-                        <div class="row">
-                            <div class="pe-0">
-                                <div class="form-left py-4 px-5">
-                                    <h2 class="text-center">Reset Password</h2>
-                                    <form action="/users/updatepass" method="post" class="row g-4" id="updatepassform">
-                                        <div class="col-12">
-                                            <label for="email">Email<span class="text-danger">*</span></label>
-                                            <div class="input-group">
-                                                <div class="input-group-text"><i class="bi bi-person-fill"></i>
-                                                </div>
-                                                <input type="email" class="form-control" placeholder="<%=user.email%>"
-                                                    name="email" id="email" disabled>
+<div class=" reset-page ">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3 mt-4">
+                <div class="bg-white rounded shadow pb-5">
+                    <div class="row">
+                        <div class="pe-0">
+                            <div class="form-left py-4 px-5">
+                                <h2 class="text-center">Reset Password</h2>
+                                <form action="/users/updatepass" method="post" class="row g-4" id="updatepassform">
+                                    <div class="col-12">
+                                        <label for="email">Email<span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-text"><i class="bi bi-person-fill"></i>
                                             </div>
+                                            <input type="email" class="form-control" placeholder="<%=user.email%>"
+                                                name="email" id="email" disabled>
                                         </div>
-                                        <div class="col-12">
-                                            <label for="oldpassword">Old Password<span
-                                                    class="text-danger">*</span></label>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="oldpassword">Old Password<span class="text-danger">*</span></label>
 
-                                            <input type="password" class="form-control" placeholder="Enter old password"
-                                                name="oldpassword" id="oldpassword" required>
-                                        </div>
-                                        <div class="col-12">
-                                            <label for="newpassword">New Password<span
-                                                    class="text-danger">*</span></label>
+                                        <input type="password" class="form-control" placeholder="Enter old password"
+                                            name="oldpassword" id="oldpassword" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="newpassword">New Password<span class="text-danger">*</span></label>
 
-                                            <input type="password" class="form-control" placeholder="Enter New password"
-                                                name="newpassword" id="newpassword" required>
-                                        </div>
-                                        <div class="col-12">
-                                            <label for="confirmpass">New Password<span
-                                                    class="text-danger">*</span></label>
+                                        <input type="password" class="form-control" placeholder="Enter New password"
+                                            name="newpassword" id="newpassword" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="confirmpass">New Password<span class="text-danger">*</span></label>
 
-                                            <input type="password" class="form-control"
-                                                placeholder="Confirm new password" name="confirmpass" id="confirmpass"
-                                                required>
-                                        </div>
-                                        <div class="col-12 text-center">
-                                            <button type="submit" class="btn btn-primary">Reset Password</button>
-                                        </div>
+                                        <input type="password" class="form-control" placeholder="Confirm new password"
+                                            name="confirmpass" id="confirmpass" required>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <button type="submit" class="btn btn-primary">Reset Password</button>
+                                    </div>
 
-                                    </form>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
