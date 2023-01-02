@@ -22,7 +22,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="https://kit.fontawesome.com/4499aac38f.js" crossorigin="anonymous"></script>
-    <link href="<%=assetPath('css/layout.css')%>">
+    <link rel="stylesheet" href="<%=assetPath('css/layout.css')%>">
     <link rel="stylesheet" href="<%=assetPath('css/header.css')%>">
     <link rel="stylesheet" href="<%=assetPath('css/footer.css')%>">
     <link rel="stylesheet" href="<%=assetPath('css/loginandsignup.css')%>">
@@ -33,7 +33,7 @@
 <body>
 
     <%- include('_header') %>
-        <div id="main-containe">
+        <div class="main-container h-100">
             <%- body %>
         </div>
         <%- include('_footer') %>
