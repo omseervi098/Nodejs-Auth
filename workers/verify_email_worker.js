@@ -1,5 +1,6 @@
 const Queue = require("bull");
 const verifyMailer = require("../mailers/verifyemail_mailer");
+const env = require("../config/environment");
 const verifyEmailQueue = new Queue("verifyemail", {
   redis: {
     port: env.redis_port,
