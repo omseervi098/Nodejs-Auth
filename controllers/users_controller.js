@@ -4,8 +4,8 @@ const forgotPass = require("../models/forgotpass");
 const crypto = require("crypto");
 const verifyEmail = require("../models/verifyemail");
 const { encrypt, decrypt } = require("../config/crypto");
-const forgotPassQueue = require("../workers/forgotpass_email_worker");
-const verifyEmailQueue = require("../workers/verify_email_worker");
+const forgotPassMailer = require("../mailers/forgotpass_mailer");
+const verifyMailer = require("../mailers/verifyemail_mailer");
 module.exports.login = function (req, res) {
   return res.render("user_login", {
     title: "Login",
@@ -94,7 +94,7 @@ module.exports.verifyEmail = async (req, res) => {
     });
 
     //send mail to the user
-    verifyEmailQueue.add(verifyemails);
+    verifyMailer.verifyEmailMail(verifyemails.email, verifyemails.token);
 
     console.log("Sending mail");
     req.flash("success", "Verification mail sent");
@@ -246,7 +246,7 @@ module.exports.createAccessToken = async (req, res) => {
 
       forgotpass = await forgotpass.populate("user", "email name");
       //Send mail to user with token
-      forgotPassQueue.add(forgotpass);
+      forgotPassMailer.newpass(forgotpass);
       req.flash("success", "Mail sent successfully");
       return res.redirect("back");
     }
