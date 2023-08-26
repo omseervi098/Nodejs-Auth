@@ -1,57 +1,55 @@
 <link rel="stylesheet" href="<%=assetPath('css/loginandsignup.css')%>">
 <div class="outer-container bg-light">
-    <div class="login-page h-100  ">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1">
-                    <div class="bg-white logincon shadow mt-5 ">
-                        <div class=" row">
-                            <div class="col-md-5 ps-0 d-none d-md-block">
-                                <div class="form-right  px-2 h-100 bg-primary text-white text-center pt-5">
-                                    <i class="bi bi-shield-lock-fill"></i>
-                                    <h1 class="mt-4"><span class="text-warning">Node</span>Auth</h1>
-                                    <h2 class="mt-4">Forgot <span class="text-warning">Password</span> ?</h2>
-
-                                </div>
-                            </div>
-                            <div class="col-md-7 pe-0">
-                                <div class="form-left h-100 py-5 px-5">
-                                    <form action="/users/forgot-password/create-access-token" method="post"
-                                        class="row g-4">
-                                        <div class="col-12">
-                                            <h1 class="text-center d-none showonsm">Forgot Password</h1>
-                                            <label for="email">Email<span class="text-danger">*</span></label>
-                                            <div class="input-group">
-                                                <div class="input-group-text"><i class="bi bi-person-fill"></i>
-                                                </div>
-                                                <input type="email" class="form-control" placeholder="Enter Email"
-                                                    name="email" id="email" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 login text-center">
-                                            <button type="submit" class="btn btn-primary px-4 mb-2">
-                                                <i class="bi bi-arrow-right-circle-fill"></i>
-                                                &nbsp;Submit
-                                            </button>
-                                        </div>
-                                    </form>
-                                    <div class="col-12 text-center">
-                                        <a href="/users/login" class="p-0">
-                                            <hr>
-                                            <button class="btn btn-dark px-4 py-2 glogin mt-2 ">
-                                                <i class="bi bi-box-arrow-in-right"></i>
-                                                <span>&nbsp;Sign In</span>
-                                            </button>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+  <div class="login-page h-100  ">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+          <div class="bg-white logincon shadow mt-5 ">
+            <div class=" row">
+              <div class="col-md-5 ps-0 d-none d-md-block">
+                <div class="form-right  px-2 h-100 bg-primary text-white text-center pt-5">
+                  <i class="bi bi-shield-lock-fill"></i>
+                  <h1 class="mt-4"><span class="text-warning">Node</span>Auth</h1>
+                  <h2 class="mt-4">Forgot <span class="text-warning">Password</span> ?</h2>
 
                 </div>
+              </div>
+              <div class="col-md-7 pe-0">
+                <div class="form-left h-100 py-5 px-5">
+                  <form action="/users/forgot-password/create-access-token" method="post" class="row g-4">
+                    <div class="col-12">
+                      <h1 class="text-center d-none showonsm">Forgot Password</h1>
+                      <label for="email">Email<span class="text-danger">*</span></label>
+                      <div class="input-group">
+                        <div class="input-group-text"><i class="bi bi-person-fill"></i>
+                        </div>
+                        <input type="email" class="form-control" placeholder="Enter Email" name="email" id="email" required>
+                      </div>
+                    </div>
+                    <div class="col-12 login text-center">
+                      <button type="submit" class="btn btn-primary px-4 mb-2">
+                        <i class="bi bi-arrow-right-circle-fill"></i>
+                        &nbsp;Submit
+                      </button>
+                    </div>
+                  </form>
+                  <div class="col-12 text-center">
+                    <a href="/users/login" class="p-0">
+                      <hr>
+                      <button class="btn btn-dark px-4 py-2 glogin mt-2 ">
+                        <i class="bi bi-box-arrow-in-right"></i>
+                        <span>&nbsp;Sign In</span>
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
             </div>
+          </div>
+
         </div>
+      </div>
     </div>
+  </div>
 </div>

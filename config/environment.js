@@ -1,8 +1,5 @@
 const config = require("dotenv").config();
 const development = {
-  redis_url: process.env.REDISHOST,
-  redis_port: process.env.REDISPORT,
-  redis_password: process.env.REDISPASSWORD,
   domain: process.env.DOMAIN,
   port: process.env.PORT,
   name: "development",
@@ -10,6 +7,8 @@ const development = {
   session_cookie_key: process.env.SESSION_COOKIE_KEY,
   db_url: process.env.MONGODB_URL,
   db: process.env.DEV_DB,
+  PORT: process.env.PORT,
+  redis_password: process.env.REDIS_PASSWORD,
   smtp: {
     pool: true,
     host: "smtp.socioknct.tech",
@@ -33,9 +32,6 @@ const development = {
   captcha_sitekey: process.env.GOOGLE_RECAPTCHA_SITE_KEY,
 };
 const production = {
-  redis_url: process.env.REDISHOST,
-  redis_port: process.env.REDISPORT,
-  redis_password: process.env.REDISPASSWORD,
   port: process.env.PORT,
   name: "production",
   asset_path: process.env.ASSET_PATH,
@@ -43,6 +39,8 @@ const production = {
   session_cookie_key: process.env.SESSION_COOKIE_KEY,
   db_url: process.env.MONGODB_URL,
   db: process.env.DEV_DB,
+  PORT: process.env.PORT,
+  redis_password: process.env.REDIS_PASSWORD,
   smtp: {
     pool: true,
     host: "smtp.socioknct.tech",
